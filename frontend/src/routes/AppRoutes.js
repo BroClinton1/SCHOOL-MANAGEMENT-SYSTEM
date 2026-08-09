@@ -11,7 +11,7 @@ import TeacherDashboard from "../pages/teacher/TeacherDashboard";
 import StudentDashboard from "../pages/student/StudentDashboard";
 import ParentDashboard from "../pages/parent/ParentDashboard";
 import Students from "../pages/admin/Students";
-
+import AddStudent from "../pages/admin/AddStudent";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -34,6 +34,10 @@ const AppRoutes = () => {
       <Route path="/parent/dashboard" element={<ParentDashboard />} />
 
       <Route path="/admin/students" element={<Students />} />
+      <Route
+  path="/admin/students/add"
+  element={<AddStudent />}
+/>
     </Routes>
   );
 };
