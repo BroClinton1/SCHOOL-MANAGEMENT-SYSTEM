@@ -1,0 +1,175 @@
+.splash-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f172a;
+  overflow: hidden;
+}
+
+.splash-content {
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.splash-logo {
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.splash-logo-shield {
+  width: 82px;
+  height: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+  color: #0f172a;
+
+  font-size: 36px;
+  font-weight: 800;
+
+  clip-path: polygon(
+    50% 0%,
+    92% 14%,
+    92% 58%,
+    78% 78%,
+    50% 100%,
+    22% 78%,
+    8% 58%,
+    8% 14%
+  );
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.splash-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 42px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.splash-subtitle {
+  margin: 10px 0 0;
+  color: #cbd5e1;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* =========================
+   LOADER
+========================= */
+
+.splash-loader {
+  margin-top: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+
+.splash-loader span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ffffff;
+  animation: splash-loading 1.2s infinite ease-in-out;
+}
+
+.splash-loader span:nth-child(1) {
+  animation-delay: -0.24s;
+}
+
+.splash-loader span:nth-child(2) {
+  animation-delay: -0.12s;
+}
+
+.splash-loader span:nth-child(3) {
+  animation-delay: 0;
+}
+
+@keyframes splash-loading {
+  0%,
+  80%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.75);
+  }
+
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 768px) {
+  .splash-content {
+    padding: 32px 20px;
+  }
+
+  .splash-title {
+    font-size: 36px;
+  }
+
+  .splash-subtitle {
+    font-size: 15px;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+  .splash-logo {
+    width: 82px;
+    height: 82px;
+    margin-bottom: 20px;
+  }
+
+  .splash-logo-shield {
+    width: 70px;
+    height: 80px;
+    font-size: 30px;
+  }
+
+  .splash-title {
+    font-size: 32px;
+  }
+
+  .splash-subtitle {
+    font-size: 14px;
+  }
+
+  .splash-loader {
+    margin-top: 34px;
+  }
+}
