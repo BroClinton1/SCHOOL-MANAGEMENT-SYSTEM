@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import DashboardLayout from "../../components/layout/DashboardLayout";
+import { createStudent } from "../../services/studentService";
 
 import "./AddStudent.css";
 
@@ -33,6 +33,12 @@ const AddStudent = () => {
   });
 
   const [errors, setErrors] = useState({});
+const [isSubmitting, setIsSubmitting] =
+  useState(false);
+
+const [submitError, setSubmitError] =
+  useState("");
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -87,29 +93,52 @@ const AddStudent = () => {
     return newErrors;
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async (event) => {
+  event.preventDefault();
 
-    const validationErrors = validateForm();
+  setSubmitError("");
 
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
+  const validationErrors = validateForm();
 
-    console.log("Student form submitted:", formData);
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+    return;
+  }
 
-    /*
-      Backend connection will be added later:
+  try {
+    setIsSubmitting(true);
 
-      POST /api/students
+    const response = await createStudent(
+      formData
+    );
 
-      The form data will be sent to Express,
-      then saved to MongoDB through Mongoose.
-    */
+    console.log(
+      "Student created:",
+      response
+    );
 
-    alert("Student form is ready for backend integration.");
-  };
+    alert(
+      "Student created successfully."
+    );
+
+    navigate("/admin/students");
+  } catch (error) {
+    console.error(
+      "Create student error:",
+      error
+    );
+
+    const message =
+      error.response?.data?.message ||
+      "Failed to create student. Please try again.";
+
+    setSubmitError(message);
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
+  
 
   return (
     <DashboardLayout>
@@ -141,6 +170,12 @@ const AddStudent = () => {
           className="student-form"
           onSubmit={handleSubmit}
         >
+{submitError && (
+  <div className="submit-error">
+    {submitError}
+  </div>
+)}
+
 
           {/* ======================================
               PERSONAL INFORMATION
@@ -690,13 +725,15 @@ const AddStudent = () => {
             >
               Cancel
             </button>
-
-            <button
-              type="submit"
-              className="save-student-button"
-            >
-              Save Student
-            </button>
+<button
+  type="submit"
+  className="save-student-button"
+  disabled={isSubmitting}
+>
+  {isSubmitting
+    ? "Saving Student..."
+    : "Save Student"}
+</button>
 
           </div>
 

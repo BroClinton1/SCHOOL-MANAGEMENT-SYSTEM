@@ -331,3 +331,31 @@
     width: 100%;
   }
 }
+
+/* =========================================
+   SUBMIT ERROR
+========================================= */
+
+.submit-error {
+  padding: 12px 14px;
+
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+
+  background: #fef2f2;
+
+  color: #7f1d1d;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================
+   DISABLED SAVE BUTTON
+========================================= */
+
+.save-student-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
