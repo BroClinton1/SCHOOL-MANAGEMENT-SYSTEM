@@ -2,31 +2,23 @@ const express = require("express");
 
 const router = express.Router();
 
-const {
-  createStudent,
-  getStudents,
-  getStudentById,
-} = require("../controllers/studentController");
+const studentController = require(
+  "../controllers/studentController"
+);
 
-// ==========================================
-// CREATE STUDENT
-// POST /api/students
-// ==========================================
+router.post(
+  "/",
+  studentController.createStudent
+);
 
-router.post("/", createStudent);
+router.get(
+  "/",
+  studentController.getStudents
+);
 
-// ==========================================
-// GET ALL STUDENTS
-// GET /api/students
-// ==========================================
-
-router.get("/", getStudents);
-
-// ==========================================
-// GET SINGLE STUDENT
-// GET /api/students/:id
-// ==========================================
-
-router.get("/:id", getStudentById);
+router.get(
+  "/:id",
+  studentController.getStudentById
+);
 
 module.exports = router;
