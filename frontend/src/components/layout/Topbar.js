@@ -2,7 +2,7 @@ import React from "react";
 
 import "./DashboardLayout.css";
 
-const Topbar = ({ onMenuClick }) => {
+const Topbar = ({ onMenuClick,title,subtitle }) => {
   return (
     <header className="dashboard-topbar">
 
@@ -18,10 +18,10 @@ const Topbar = ({ onMenuClick }) => {
 
       {/* Page heading */}
       <div className="topbar-heading">
-        <h1>Dashboard</h1>
+        <h1>{title}</h1>
 
         <p>
-          Welcome back to EduSmart
+          {subtitle}
         </p>
       </div>
 
